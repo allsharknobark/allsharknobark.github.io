@@ -9,18 +9,24 @@
   }
 
   body {
+    margin: 0;
+    padding:0;
     background: white;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
   }
   canvas {
     border: 1px solid blue;
+    margin-top:-50px;
   }
+  img{margin-top:20px;}
   </style>
 </head>
 <body>
 <canvas width="400" height="400" id="game"></canvas>
+<img src = "/Users/alexgaudio/Documents/GitHub/al surf.jpg" alt = "your image">
 <script>
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
@@ -170,7 +176,7 @@ document.addEventListener('keydown', function(e) {
   }
 });
  // Draw the custom message
- drawText(customMessage, 10, 30, 'white');
+ drawText(customMessage, 10, 30, 'purple');
 // start the game
 requestAnimationFrame(loop);
 </script>
