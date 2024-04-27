@@ -1,54 +1,44 @@
+SNAKEEE GAMEEEEE (git.txt)
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
-    <style>
-        canvas {
-            border: 1px solid #000;
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
+  <title></title>
+  <style>
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  canvas {
+    border: 1px solid blue;
+  }
+  </style>
 </head>
 <body>
     <canvas id="gameCanvas" width="400" height="400"></canvas>
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
+       document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
 
-    const gridSize = 20;
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
-    const gridWidth = canvasWidth / gridSize;
-    const gridHeight = canvasHeight / gridSize;
-
     // Define variables for snake, apple, and game state
-    let snake = [];
-    let apple = generateApplePosition();
+    let snake = [{x: 10, y: 10}];
+    let apple = {x: 15, y: 15};
     let dx = 0;
     let dy = 0;
     let score = 0;
     let gameRunning = true;
-    let moveInterval = 100; // Adjust this value to control the speed (lower value means faster speed)
-    let moveCounter = 0;
-    let customMessage = "";
-
-    // Initialize the snake with a starting size of 10 blocks
-    for (let i = 0; i < 10; i++) {
-        snake.push({x: 10 - i, y: 10});
-    }
 
     // Game loop
     function gameLoop() {
         if (gameRunning) {
-            moveCounter++;
-            if (moveCounter >= moveInterval) {
-                update();
-                moveCounter = 0;
-            }
+            update();
             draw();
             requestAnimationFrame(gameLoop);
         }
@@ -58,21 +48,12 @@
     function update() {
         // Move the snake
         const head = {x: snake[0].x + dx, y: snake[0].y + dy};
-
-        // Check if the snake hits the boundaries
-        if (head.x < 0 || head.x >= gridWidth || head.y < 0 || head.y >= gridHeight) {
-            // Customize text here
-            customMessage = "Oops! You hit the boundary!";
-            restartGame();
-            return;
-        }
-
         snake.unshift(head);
 
         // Check if the snake hits itself
         if (snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)) {
             // Customize text here
-            customMessage = "Oops! You hit yourself!";
+            console.log("Oops! You hit yourself!");
             restartGame();
             return;
         }
@@ -81,9 +62,12 @@
         if (head.x === apple.x && head.y === apple.y) {
             score++;
             // Customize text here
-            customMessage = "Yummy! You ate the apple!";
+            console.log("Yummy! You ate the apple!");
             // Generate new apple position
-            apple = generateApplePosition();
+            apple = {
+                x: Math.floor(Math.random() * canvas.width / 10) * 10,
+                y: Math.floor(Math.random() * canvas.height / 10) * 10
+            };
         } else {
             // Remove the tail segment if the snake does not eat the apple
             snake.pop();
@@ -93,20 +77,15 @@
     // Draw everything on the canvas
     function draw() {
         // Clear the canvas
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Draw the snake
         ctx.fillStyle = "#00f";
-        snake.forEach(segment => ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize));
+        snake.forEach(segment => ctx.fillRect(segment.x * 10, segment.y * 10, 10, 10));
 
         // Draw the apple
         ctx.fillStyle = "#f00";
-        ctx.fillRect(apple.x * gridSize, apple.y * gridSize, gridSize, gridSize);
-
-        // Draw custom text
-        ctx.fillStyle = "#000";
-        ctx.font = "20px Arial";
-        ctx.fillText(customMessage, 10, canvasHeight - 20);
+        ctx.fillRect(apple.x * 10, apple.y * 10, 10, 10);
     }
 
     // Handle keyboard input
@@ -140,27 +119,14 @@
         }
     });
 
-    // Generate random position for the apple
-    function generateApplePosition() {
-        return {
-            x: Math.floor(Math.random() * gridWidth),
-            y: Math.floor(Math.random() * gridHeight)
-        };
-    }
-
     // Restart the game
     function restartGame() {
-        snake = [];
-        for (let i = 0; i < 10; i++) {
-            snake.push({x: 10 - i, y: 10});
-        }
+        snake = [{x: 10, y: 10}];
         dx = 0;
         dy = 0;
         gameRunning = true;
-        // Generate new apple position
-        apple = generateApplePosition();
         // Customize text here
-        customMessage = "Game restarted!";
+        console.log("Game restarted!");
     }
 
     // Start the game loop
