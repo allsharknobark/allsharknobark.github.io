@@ -1,11 +1,11 @@
-SNAKEEE GAMEEEEE (git.txt)
+SNAKEEE GAMEEEEE 
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>"hello"</title>
   <style>
   html, body {
-    height: 100%;
+    height: 50%;
     margin: 0;
   }
 
@@ -107,7 +107,8 @@ function loop() {
 
     // snake ate apple
     if (cell.x === apple.x && cell.y === apple.y) {
-      snake.maxCells++ && "you're getting wiser love" ;
+      snake.maxCells++;
+     "you're getting wiser love";
 
       // canvas is 400x400 which is 25x25 grids 
       apple.x = getRandomInt(0, 25) * grid;
@@ -168,3 +169,31 @@ requestAnimationFrame(loop);
 </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Popup without Javascript</title>
+	<link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+	<h1>Popup without javascript demo></h1>
+	<p><a href="#my_popup">Open popup</a></p>
+	<p>HTML visible body ends here</p>
+
+	<!--
+	Popup: the key is that id of <a> tag below is the same as href of <a> tag above
+	- that's what opens popup
+	<a> below serves several purposes:
+		1) popup background covering the whole window,
+		2) anchor to show popup when #my_popup is in URL,
+		3) link to close popup - if you click the background popup disappears
+	-->
+	<a id="my_popup" href="#" class="popup"></a>
+	<div class="popup">
+	<h3>My popup heading</h3>
+	<p>Popup content</p>
+		<a class="close x" href="#">x</a>
+		<a class="close word" href="#">Close</a>
+	</div>    
+</body> 
