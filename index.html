@@ -60,7 +60,7 @@
 </head>
 <body>
     <div class="container">
-        <canvas width="600" height="600" id="game"></canvas>
+        <canvas width="640" height="640" id="game"></canvas>
         <img src="al surf.jpg" alt="your image">
         <div id="counterBox">
           <div id="counterTitle">Counter</div>
@@ -122,7 +122,7 @@ function getRandomInt(min, max) {
 // Function to draw text on the canvas
 function drawText(text, x, y, color, fontSize) {
   context.fillStyle = color;
-  context.font = "30px Brush Script"; // Set the font size directly
+  context.font = fontSize + "px Brush Script"; // Set the font size directly
   context.fillText(text, x, y);
 }
 // Function to get the next custom message in sequence
@@ -244,9 +244,13 @@ function loop() {
       snake.maxCells++;
       customMessage = getNextCustomMessage();
 
-      // canvas is 600x600 which is 37.5x37.5 grids 
-      apple.x = getRandomInt(0, 38) * grid;
-      apple.y = getRandomInt(0, 38) * grid;
+      // canvas is 640x640 which is 40 x 40 grids 
+      apple.x = getRandomInt(0, 40) * grid;
+      apple.y = getRandomInt(0, 40) * grid;
+       // If it's the last message, end the game
+       if (customMessage === ".........") {
+        cancelAnimationFrame(loop); // Stop the game loop
+      }
     }
 
     // check collision with all cells after this one (modified bubble sort)
