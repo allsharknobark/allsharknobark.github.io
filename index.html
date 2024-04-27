@@ -53,6 +53,13 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+// Function to draw text on the canvas
+function drawText(text, x, y, color) {
+  context.fillStyle = color;
+  context.font = "20px Arial";
+  context.fillText(text, x, y);
+}
+
 // game loop
 function loop() {
   requestAnimationFrame(loop);
@@ -162,7 +169,8 @@ document.addEventListener('keydown', function(e) {
     snake.dx = 0;
   }
 });
-
+ // Draw the custom message
+ drawText(customMessage, 10, 30, 'white');
 // start the game
 requestAnimationFrame(loop);
 </script>
