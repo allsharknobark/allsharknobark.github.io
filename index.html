@@ -10,13 +10,13 @@ SNAKEEE GAMEEEEE (git.txt)
   }
 
   body {
-    background: black;
+    background: white;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   canvas {
-    border: 1px solid white;
+    border: 1px solid blue;
   }
   </style>
 </head>
@@ -41,7 +41,7 @@ var snake = {
   cells: [],
   
   // length of the snake. grows when eating an apple
-  maxCells: 4
+  maxCells: 10
 };
 var apple = {
   x: 320,
@@ -107,7 +107,7 @@ function loop() {
 
     // snake ate apple
     if (cell.x === apple.x && cell.y === apple.y) {
-      snake.maxCells++;
+      snake.maxCells++ && "you're getting wiser love" ;
 
       // canvas is 400x400 which is 25x25 grids 
       apple.x = getRandomInt(0, 25) * grid;
@@ -122,9 +122,10 @@ function loop() {
         snake.x = 160;
         snake.y = 160;
         snake.cells = [];
-        snake.maxCells = 4;
+        snake.maxCells = 10;
         snake.dx = grid;
         snake.dy = 0;
+        "you're dead now love"
 
         apple.x = getRandomInt(0, 25) * grid;
         apple.y = getRandomInt(0, 25) * grid;
