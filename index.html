@@ -17,6 +17,9 @@
     justify-content: center;
     height: 100vh;
   }
+  .container {
+    text-align: center;
+  }
   canvas {
     border: 1px solid blue;
    
@@ -26,12 +29,17 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    width: 50px;
+    height: auto;
+
 }
   </style>
 </head>
 <body>
-<canvas width="400" height="400" id="game"></canvas>
-<img src = "al surf.jpg" alt = "your image">
+    <div class="container"></div>
+        <canvas width="400" height="400" id="game"></canvas>
+        <img src = "al surf.jpg" alt = "your image">
+</div>
 <script>
 var customMessage = "silly snake, where are you going?" 
 var canvas = document.getElementById('game');
