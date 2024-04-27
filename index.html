@@ -83,6 +83,23 @@ function drawText(text, x, y, color) {
   context.font = "15px Brush Script";
   context.fillText(text, x, y);
 }
+// Function to get the next custom message in sequence
+var currentMessageIndex = 0;
+function getNextCustomMessage() {
+  var messages = [
+    "oh that was a bad apple",
+    "not another bad apple :(",
+    "silly snake what if all the apples are bad?",
+    "you can't help yourself can you",
+    "nom nom nom",
+    "this can't go on forever I assure you snake",
+    "........."
+    // Add more messages as needed
+  ];
+
+  var message = messages[currentMessageIndex];
+  currentMessageIndex = (currentMessageIndex + 1) % messages.length; // Increment index and wrap around
+  return message;
 
 // game loop
 function loop() {
@@ -141,7 +158,7 @@ function loop() {
     // snake ate apple
     if (cell.x === apple.x && cell.y === apple.y) {
       snake.maxCells++;
-      customMessage = "not another bad apple :("
+      customMessage = getNextCustomMessage();
 
       // canvas is 400x400 which is 25x25 grids 
       apple.x = getRandomInt(0, 25) * grid;
