@@ -185,9 +185,6 @@ function handleTouchMove(event) {
     }
   }
 }
-// Boolean flag to track whether the game should continue
-var gameRunning = true;
-
 // game loop
 function loop() {
   requestAnimationFrame(loop);
@@ -252,7 +249,7 @@ function loop() {
       apple.y = getRandomInt(0, 40) * grid;
        // If it's the last message, end the game
        if (customMessage === ".........") {
-        gameRunning = false; // Stop the game loop
+        cancelAnimationFrame(loop); // Stop the game loop
       }
     }
 
@@ -275,12 +272,9 @@ function loop() {
         // Reset the custom message index to start from the first one again
         currentMessageIndex = 0;
       }
-      // Check if the game should continue
-  if (!gameRunning) {
-    cancelAnimationFrame(loop); // Stop the game loop
-  }
     }
- 
+  });
+}
 
 // listen to keyboard events to move the snake
 document.addEventListener('keydown', function(e) {
