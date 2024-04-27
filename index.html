@@ -41,7 +41,7 @@
 </head>
 <body>
     <div class="container">
-        <canvas width="400" height="400" id="game"></canvas>
+        <canvas width="600" height="600" id="game"></canvas>
         <img src = "al surf.jpg" alt = "your image">
 </div>
 <script>
@@ -102,47 +102,47 @@ function getNextCustomMessage() {
   return message;
 }
  // Touch event handlers
- document.addEventListener('touchstart', handleTouchStart);
-    document.addEventListener('touchmove', handleTouchMove);
+document.addEventListener('touchstart', handleTouchStart, { passive: false });
+document.addEventListener('touchmove', handleTouchMove, { passive: false });
 
-    var startX, startY;
+var startX, startY;
 
-    function handleTouchStart(event) {
-      event.preventDefault();
-      startX = event.touches[0].clientX;
-      startY = event.touches[0].clientY;
+function handleTouchStart(event) {
+  event.preventDefault(); // Prevent default browser behavior
+  startX = event.touches[0].clientX;
+  startY = event.touches[0].clientY;
+}
+
+function handleTouchMove(event) {
+  event.preventDefault(); // Prevent default browser behavior
+  var deltaX = event.touches[0].clientX - startX;
+  var deltaY = event.touches[0].clientY - startY;
+
+  // Determine the direction of movement based on swipe direction
+  if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    // Horizontal swipe
+    if (deltaX > 0) {
+      // Move right
+      snake.dx = grid;
+      snake.dy = 0;
+    } else {
+      // Move left
+      snake.dx = -grid;
+      snake.dy = 0;
     }
-
-    function handleTouchMove(event) {
-      event.preventDefault();
-      var deltaX = event.touches[0].clientX - startX;
-      var deltaY = event.touches[0].clientY - startY;
-
-      // Determine the direction of movement based on swipe direction
-      if (Math.abs(deltaX) > Math.abs(deltaY)) {
-        // Horizontal swipe
-        if (deltaX > 0) {
-          // Move right
-          snake.dx = grid;
-          snake.dy = 0;
-        } else {
-          // Move left
-          snake.dx = -grid;
-          snake.dy = 0;
-        }
-      } else {
-        // Vertical swipe
-        if (deltaY > 0) {
-          // Move down
-          snake.dy = grid;
-          snake.dx = 0;
-        } else {
-          // Move up
-          snake.dy = -grid;
-          snake.dx = 0;
-        }
-      }
+  } else {
+    // Vertical swipe
+    if (deltaY > 0) {
+      // Move down
+      snake.dy = grid;
+      snake.dx = 0;
+    } else {
+      // Move up
+      snake.dy = -grid;
+      snake.dx = 0;
     }
+  }
+}
 // game loop
 function loop() {
   requestAnimationFrame(loop);
@@ -202,9 +202,9 @@ function loop() {
       snake.maxCells++;
       customMessage = getNextCustomMessage();
 
-      // canvas is 400x400 which is 25x25 grids 
-      apple.x = getRandomInt(0, 25) * grid;
-      apple.y = getRandomInt(0, 25) * grid;
+      // canvas is 600x600 which is 37.5x37.5 grids 
+      apple.x = getRandomInt(0, 38) * grid;
+      apple.y = getRandomInt(0, 38) * grid;
     }
 
     // check collision with all cells after this one (modified bubble sort)
@@ -218,7 +218,7 @@ function loop() {
         snake.maxCells = 10;
         snake.dx = grid;
         snake.dy = 0;
-        customMessage = "well at least you tried"
+        customMessage = "try again stupid"
 
         apple.x = getRandomInt(0, 25) * grid;
         apple.y = getRandomInt(0, 25) * grid;
