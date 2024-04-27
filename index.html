@@ -122,7 +122,7 @@ function getRandomInt(min, max) {
 // Function to draw text on the canvas
 function drawText(text, x, y, color) {
   context.fillStyle = color;
-  context.font = "30px Brush Script";
+  context.font = fontSize + "30px Brush Script";
   context.fillText(text, x, y);
 }
 // Function to get the next custom message in sequence
@@ -190,7 +190,7 @@ function loop() {
   requestAnimationFrame(loop);
 
   // slow game loop to 15 fps instead of 60 (60/15 = 4)
-  if (++count < 4) {
+  if (++count < 3) {
     return;
   }
 
@@ -198,7 +198,7 @@ function loop() {
   context.clearRect(0,0,canvas.width,canvas.height);
 
    // Draw the custom message
- drawText(customMessage, 10, 30, 'blue');
+ drawText(customMessage, 10, 30, 'blue',30);
 
   // move snake by it's velocity
   snake.x += snake.dx;
