@@ -122,7 +122,7 @@ function getRandomInt(min, max) {
 // Function to draw text on the canvas
 function drawText(text, x, y, color, fontSize) {
   context.fillStyle = color;
-  context.font = fontSize + "px Brush Script"; // Set the font size directly
+  context.font = fontSize + "px Brush Script MT"; // Set the font size directly
   context.fillText(text, x, y);
 }
 // Function to get the next custom message in sequence
@@ -198,7 +198,7 @@ function loop() {
   context.clearRect(0,0,canvas.width,canvas.height);
 
    // Draw the custom message
- drawText(customMessage, 10, 30, 'blue',30,'Brush Script');
+ drawText(customMessage, 10, 30, 'blue',30,'Brush Script MT');
 
   // move snake by it's velocity
   snake.x += snake.dx;
