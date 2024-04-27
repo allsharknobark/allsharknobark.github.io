@@ -80,7 +80,7 @@ function getRandomInt(min, max) {
 // Function to draw text on the canvas
 function drawText(text, x, y, color) {
   context.fillStyle = color;
-  context.font = "20px Arial";
+  context.font = "15px Brush Script";
   context.fillText(text, x, y);
 }
 
@@ -97,7 +97,7 @@ function loop() {
   context.clearRect(0,0,canvas.width,canvas.height);
 
    // Draw the custom message
- drawText(customMessage, 10, 30, 'purple');
+ drawText(customMessage, 10, 30, 'blue');
 
   // move snake by it's velocity
   snake.x += snake.dx;
