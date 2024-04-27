@@ -44,7 +44,27 @@
         <canvas width="600" height="600" id="game"></canvas>
         <img src = "al surf.jpg" alt = "your image">
 </div>
+<div id="counter">0</div> <!-- Counter display -->
 <script>
+
+// Retrieve the counter value from localStorage or set it to 0 if it doesn't exist
+var counter = localStorage.getItem('gameCounter') || 0;
+
+// Update the counter display
+function updateCounter() {
+  document.getElementById('counter').textContent = counter;
+}
+
+// Increment the counter and update the display
+function incrementCounter() {
+  counter++;
+  localStorage.setItem('gameCounter', counter);
+  updateCounter();
+}
+
+// Call incrementCounter() when the game starts or loads
+incrementCounter();
+
 var customMessage = "silly snake, where are you going?" 
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
