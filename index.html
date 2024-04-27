@@ -101,7 +101,48 @@ function getNextCustomMessage() {
   currentMessageIndex = (currentMessageIndex + 1) % messages.length; // Increment index and wrap around
   return message;
 }
+ // Touch event handlers
+ document.addEventListener('touchstart', handleTouchStart);
+    document.addEventListener('touchmove', handleTouchMove);
 
+    var startX, startY;
+
+    function handleTouchStart(event) {
+      event.preventDefault();
+      startX = event.touches[0].clientX;
+      startY = event.touches[0].clientY;
+    }
+
+    function handleTouchMove(event) {
+      event.preventDefault();
+      var deltaX = event.touches[0].clientX - startX;
+      var deltaY = event.touches[0].clientY - startY;
+
+      // Determine the direction of movement based on swipe direction
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // Horizontal swipe
+        if (deltaX > 0) {
+          // Move right
+          snake.dx = grid;
+          snake.dy = 0;
+        } else {
+          // Move left
+          snake.dx = -grid;
+          snake.dy = 0;
+        }
+      } else {
+        // Vertical swipe
+        if (deltaY > 0) {
+          // Move down
+          snake.dy = grid;
+          snake.dx = 0;
+        } else {
+          // Move up
+          snake.dy = -grid;
+          snake.dx = 0;
+        }
+      }
+    }
 // game loop
 function loop() {
   requestAnimationFrame(loop);
@@ -181,6 +222,9 @@ function loop() {
 
         apple.x = getRandomInt(0, 25) * grid;
         apple.y = getRandomInt(0, 25) * grid;
+
+        // Reset the custom message index to start from the first one again
+        currentMessageIndex = 0;
       }
     }
   });
