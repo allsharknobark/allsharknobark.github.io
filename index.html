@@ -37,14 +37,36 @@
     height: auto;
 
 }
+ /* Counter box styling */
+ #counterBox {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #counterTitle {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #counterValue {
+      font-size: 25px;
+    }
   </style>
 </head>
 <body>
     <div class="container">
         <canvas width="600" height="600" id="game"></canvas>
-        <img src = "al surf.jpg" alt = "your image">
-</div>
-<div id="counter">0</div> <!-- Counter display -->
+        <img src="al surf.jpg" alt="your image">
+        <div id="counterBox">
+          <div id="counterTitle">Counter</div>
+          <div id="counterValue">0</div>
+        </div>
+      </div>
 <script>
 
 // Retrieve the counter value from localStorage or set it to 0 if it doesn't exist
