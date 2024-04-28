@@ -351,11 +351,13 @@ document.addEventListener('keydown', function(e) {
     snake.dx = 0;
   }
 });
-// Event listener to close the pop-up when clicked
+
+// Event listener to play the pop-up sound when the pop-up is clicked
 document.getElementById('popup').addEventListener('click', function() {
-  // Hide the pop-up
-  this.style.display = 'none';
+  // Play the pop-up sound
+  playPopupSound();
 });
+
 // Function to play the pop-up sound
 function playPopupSound() {
   var popupSound = document.getElementById('popupSound');
