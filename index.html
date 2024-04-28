@@ -320,7 +320,12 @@ function loop() {
 
 // listen to keyboard events to move the snake
 document.addEventListener('keydown', function(e) {
-  // prevent snake from backtracking on itself by checking that it's 
+  // Prevent default behaviour of arrow keys on the web browser
+  if ([37,38,38,49],includes(e.keyCode)){
+    e.preventDefault();
+  } 
+
+// prevent snake from backtracking on itself by checking that it's 
   // not already moving on the same axis (pressing left while moving
   // left won't do anything, and pressing right while moving left
   // shouldn't let you collide with your own body)
