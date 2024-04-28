@@ -344,6 +344,11 @@ document.getElementById('popup').addEventListener('click', function() {
   // Hide the pop-up
   this.style.display = 'none';
 });
+// Function to play the pop-up sound
+function playPopupSound() {
+  var popupSound = document.getElementById('popupSound');
+  popupSound.play();
+}
 // start the game
 requestAnimationFrame(loop);
 </script>
