@@ -65,8 +65,10 @@
       z-index: 9999;
       display: none; /* Initially hidden */
      }
+     #popupText {
+    margin-bottom: 10px; /* Add some space between the text and the image */
      #popup img {
-  width: 800px; /* Adjust the width to your desired size */
+  width: 1000px; /* Adjust the width to your desired size */
   height: auto; /* Maintain aspect ratio */
      }
   </style>
@@ -81,6 +83,7 @@
         </div>
         <!-- Pop-up image -->
         <div id="popup">
+            <div id="popupText">Text above the pop-up image</div>
             <img src="dolfin.jpg" alt="Pop-up Image">
           </div>
       </div>
