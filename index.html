@@ -82,7 +82,8 @@
             <img src="dolfin.jpg" alt="Pop-up Image">
           </div>
       </div>
-
+<!-- Hidden audio element for sound -->
+<audio id="popupSound" src="COLORS_wav.wav" preload="auto"></audio>
 <script>
 
 // Retrieve the counter value from localStorage or set it to 0 if it doesn't exist
@@ -275,6 +276,8 @@ function loop() {
         gameRunning = false; // Stop the game loop
         // Show the pop-up
         document.getElementById('popup').style.display = 'block';
+         // Play the sound
+         document.getElementById('popupSound').play();
       }
     }
 
