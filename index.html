@@ -191,7 +191,8 @@ var gameRunning = true;
 
 // game loop
 function loop() {
-  requestAnimationFrame(loop);
+  // Assign the requestAnimationFrame call to gameLoop
+  gameLoop = requestAnimationFrame(loop);
 
   // slow game loop to 15 fps instead of 60 (60/15 = 4)
   if (++count < 3) {
@@ -280,11 +281,13 @@ function loop() {
     }
   });
  // Check if the game should continue
- if (!gameRunning) {
-    cancelAnimationFrame(loop); // Stop the game loop
+ if (customMessage === ".........") {
+    clearInterval(gameLoop); // Stop the game loop
+    return; // Exit the loop
 }
 }
-
+// Start the game loop
+var gameLoop = requestAnimationFrame(loop);
 
 // listen to keyboard events to move the snake
 document.addEventListener('keydown', function(e) {
