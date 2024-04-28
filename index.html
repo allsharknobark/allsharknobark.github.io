@@ -282,7 +282,7 @@ function loop() {
   });
  // Check if the game should continue
  if (customMessage === ".........") {
-    clearInterval(gameLoop); // Stop the game loop
+    clearAnimationFrame(gameLoop); // Stop the game loop
     return; // Exit the loop
 }
 }
