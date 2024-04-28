@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>SNAKE</title>
-  <style>
+  <style> 
   html, body {
     height: 100%;
     margin: 0;
@@ -319,6 +319,11 @@ function loop() {
 }
 // Start the game loop
 var gameLoop = requestAnimationFrame(loop);
+
+// listen to keyboard events to move the snake and prevent default behavior
+document.addEventListener('keydown', function(e) {
+  // Prevent default behavior of keyboard events
+  e.preventDefault();
 
 // listen to keyboard events to move the snake
 document.addEventListener('keydown', function(e) {
