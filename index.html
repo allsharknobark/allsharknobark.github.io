@@ -56,6 +56,17 @@
     #counterValue {
       font-size: 25px;
     }
+     /* Style for pop-up */
+     #popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border: 2px solid black;
+      padding: 20px;
+      display: none; /* Initially hidden */
+     }
   </style>
 </head>
 <body>
@@ -66,7 +77,12 @@
           <div id="counterTitle">Counter</div>
           <div id="counterValue">0</div>
         </div>
+        <!-- Pop-up image -->
+        <div id="popup">
+            <img src="/Users/alexgaudio/Documents/GitHub/dolfin.jpg" alt="Pop-up Image">
+          </div>
       </div>
+
 <script>
 
 // Retrieve the counter value from localStorage or set it to 0 if it doesn't exist
@@ -135,6 +151,7 @@ function getNextCustomMessage() {
     "you can't help yourself can you",
     "nom nom nom",
     "this can't go on forever I assure you snake",
+    ".....",
     "........."
     // Add more messages as needed
   ];
@@ -256,6 +273,8 @@ function loop() {
        // If it's the last message, end the game
        if (customMessage === ".........") {
         gameRunning = false; // Stop the game loop
+        // Show the pop-up
+        document.getElementById('popup').style.display = 'block';
       }
     }
 
@@ -317,7 +336,11 @@ document.addEventListener('keydown', function(e) {
     snake.dx = 0;
   }
 });
-
+// Event listener to close the pop-up when clicked
+document.getElementById('popup').addEventListener('click', function() {
+  // Hide the pop-up
+  this.style.display = 'none';
+});
 // start the game
 requestAnimationFrame(loop);
 </script>
