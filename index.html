@@ -352,7 +352,7 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// Automatically play the pop-up sound when the pop-up is clicked
+// Automatically play the pop-up sound when the pop-up is displayed
 document.getElementById('popup').addEventListener('click', function() {
   // Play the pop-up sound
   playPopupSound();
@@ -363,12 +363,6 @@ function playPopupSound() {
   var popupSound = document.getElementById('popupSound');
   popupSound.play();
 }
-
-// Automatically play the pop-up sound when the pop-up is displayed
-document.getElementById('popup').addEventListener('mouseover', function() {
-  // Play the pop-up sound
-  playPopupSound();
-});
 
 // start the game
 requestAnimationFrame(loop);
